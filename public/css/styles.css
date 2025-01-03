@@ -249,7 +249,14 @@ table a{
 
   /*modal*/
   
-#modal, #modal-logo {
+#confirm {
+  position: fixed;
+  top: 50%;
+  left: 50%;
+  margin: -95px 0 0 -200px;
+  z-index: 2;
+}
+#modal, #modal-logo{
   position: fixed;
   top: 30%;
   left: 50%;
@@ -268,7 +275,8 @@ table a{
 
 #back,
 #modal, 
-#modal-logo{
+#modal-logo,
+#confirm{
   display: none;
 }
 
@@ -292,4 +300,77 @@ table a{
 }
 .top .btn:hover{
   background-color: #791f0f;
+}
+/*Paginação*/
+
+.pagination {  
+  display: flex;           /* Flexbox para garantir que os itens fiquem lado a lado */  
+  justify-content: center; /* Centralizar a paginação */  
+  margin: 20px 0;        /* Espaçamento externo */  
+}  
+
+.page-item {  
+  margin: 0 5px;         /* Espaçamento entre os itens da página */  
+}  
+
+.page-link {  
+  display: inline-flex;   /* Flexbox para centralizar o conteúdo */  
+  align-items: center;    /* Centraliza verticalmente */  
+  justify-content: center; /* Centraliza horizontalmente */  
+  padding: 10px 15px;     /* Padding para os links */  
+  border: 1px solid #791f0f; /* Borda do link */  
+  border-radius: 0.25rem;  /* Bordas arredondadas */  
+  color: #791f0f;         /* Cor dos links */  
+  text-decoration: none;   /* Remove o sublinhado nos links */  
+  transition: background-color 0.3s, color 0.3s; /* Efeitos de transição */  
+}  
+
+.page-link:hover {  
+  background-color: #791f0f; /* Cor de fundo ao passar o mouse */  
+  color: white;               /* Texto branco ao passar o mouse */  
+}  
+
+.page-item.active .page-link {  
+  background-color: #791f0f; /* Azul para a página ativa */  
+  color: white;              /* Texto branco para a página ativa */  
+  border-color: #791f0f;    /* Mesma borda na página ativa */  
+}  
+
+.page-item.disabled .page-link {  
+  background-color: #f8f9fa; /* Cinza claro para itens desativados */  
+  color: #6c757d;            /* Texto cinza */  
+  border-color: #dee2e6;     /* Borda cinza */  
+}
+
+
+.modal-confirm{
+  background-color: rgb(226, 226, 226);
+  border: 2px solid #ffffff;
+  border-radius: 10px;
+  cursor: pointer;
+
+}
+.modal-confirm h1{
+  display: block;
+  background-color: rgb(194, 194, 194);
+  color: red;
+  padding: 10px 20px;
+  border-top-left-radius: 10px;
+  border-top-right-radius: 10px;
+}
+.modal-confirm .btn-confirm{
+  display: flex;
+  justify-content: space-between;
+
+}
+.modal-confirm a{
+  margin: 20px 30px;
+  font-weight: bold;
+  text-decoration: none;
+  background-color: #ffffff;
+  padding: 10px 20px;
+  border-radius: 20px;
+}
+.modal-confirm a#sim{
+  color: red;
 }

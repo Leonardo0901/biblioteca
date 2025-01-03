@@ -1,18 +1,17 @@
-function show(){   
+function show() {
     document.getElementById('modal').style.display = 'inline-block';
     document.getElementById('back').style.display = 'inline-block';
-
 }
-function fechar(){
+function fechar() {
     document.getElementById('modal').style.display = 'none';
     document.getElementById('back').style.display = 'none';
 }
-function showf(){
+function showf() {
     document.getElementById('modal-logo').style.display = 'inline-block';
     document.getElementById('back').style.display = 'inline-block';
 
 }
-function ffechar(){
+function ffechar() {
     document.getElementById('modal-logo').style.display = 'none';
     document.getElementById('back').style.display = 'none';
 }
