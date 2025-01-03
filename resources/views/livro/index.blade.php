@@ -1,7 +1,7 @@
 @extends('layout')
 
 @section('navlink')
-<nav> 
+<nav>
     <ul>
         <li><a href="{{route('dashboard')}}"><i class="fa fa-dashboard"></i> Dashboard</a></li>
         <li><a class="active" href="{{route('livro.index')}}"><i class="fa fa-book"></i> Livro</a></li>
@@ -31,82 +31,26 @@
                         <th>Autor</th>
                         <th>Editora</th>
                         <th>Nº Pag</th>
+                        <th>Qtd</th>
                         <th>Status</th>
                         <th>Editar</th>
                         <th>Deletar</th>
                     </tr>
                 </thead>
                 <tbody>
+                     @foreach ($livros as $livro )
                     <tr>
-                        <td>1</td>
-                        <td>HTML</td>
-                        <td>Jonas Brunt</td>
-                        <td>Casa do Código</td>
-                        <td>225</td>
-                        <td>Disponivel</td>
+                        <td>{{ $livro->id }}</td>
+                        <td>{{ $livro->titulo }}</td>
+                        <td>{{ $livro->autor }}</td>
+                        <td>{{ $livro->editora }}</td>
+                        <td>{{ $livro->num_pag }}</td>
+                        <td>{{ $livro->qtd }}</td>
+                        <td>{{ $livro->status}}</td>
                         <td><a href="#"><i class="fa fa-pencil-alt"></i></a></td>
-                        <td><a href="#"><i class="fa fa-trash"></i></a></td>
+                        <td><a href="{{ route('livros.destroy',$livro->id) }}"><i class="fa fa-trash"></i></a></td>
                     </tr>
-                    <tr>
-                        <td>2</td>
-                        <td>HTML</td>
-                        <td>Jonas Brunt</td>
-                        <td>Casa do Código</td>
-                        <td>225</td>
-                        <td>Disponivel</td>
-                        <td><a href="#"><i class="fa fa-pencil-alt"></i></a></td>
-                        <td><a href="#"><i class="fa fa-trash"></i></a></td>
-                    </tr>
-                    <tr>
-                        <td>3</td>
-                        <td>HTML</td>
-                        <td>Jonas Brunt</td>
-                        <td>Casa do Código</td>
-                        <td>225</td>
-                        <td>Disponivel</td>
-                        <td><a href="#"><i class="fa fa-pencil-alt"></i></a></td>
-                        <td><a href="#"><i class="fa fa-trash"></i></a></td>
-                    </tr>
-                    <tr>
-                        <td>4</td>
-                        <td>HTML</td>
-                        <td>Jonas Brunt</td>
-                        <td>Casa do Código</td>
-                        <td>225</td>
-                        <td>Disponivel</td>
-                        <td><a href="#"><i class="fa fa-pencil-alt"></i></a></td>
-                        <td><a href="#"><i class="fa fa-trash"></i></a></td>
-                    </tr>
-                    <tr>
-                        <td>5</td>
-                        <td>HTML</td>
-                        <td>Jonas Brunt</td>
-                        <td>Casa do Código</td>
-                        <td>225</td>
-                        <td>Disponivel</td>
-                        <td><a href="#"><i class="fa fa-pencil-alt"></i></a></td>
-                        <td><a href="#"><i class="fa fa-trash"></i></a></td>
-                    </tr>
-                    <tr>
-                        <td>6</td>
-                        <td>HTML</td>
-                        <td>Jonas Brunt</td>
-                        <td>Casa do Código</td>
-                        <td>225</td>
-                        <td>Disponivel</td>
-                        <td><a href="#"><i class="fa fa-pencil-alt"></i></a></td>
-                        <td><a href="#"><i class="fa fa-trash"></i></a></td>
-                    </tr>
-                    <tr>
-                        <td>7</td>
-                        <td>HTML</td>
-                        <td>Jonas Brunt</td>
-                        <td>Casa do Código</td>
-                        <td>225</td>
-                        <td>Disponivel</td>
-                        <td><a onclick="show()" href="#"><i class="fa fa-pencil-alt"></i></a></td>
-                        <td><a href="#"><i class="fa fa-trash"></i></a></td>
-                    </tr>
+                     @endforeach
                 </tbody>
             </table>
         </main>
@@ -121,7 +65,7 @@
                 <label for="Autor">Autor:</label>
                 <input type="text" name="autor" placeholder="Jordan Jeremy" required>
                 <label for="editora">Editora:</label>
-                <input type="text" name="editora" placeholder="exemplo@gmail.com" required> 
+                <input type="text" name="editora" placeholder="exemplo@gmail.com" required>
                 <label for="numero">Nº de Páginas</label>
                 <input type="number" name="pag" placeholder="255" required min="10">
                 <div class="footer">
@@ -131,17 +75,20 @@
                 </div>
             </form>
         </div>
-        <section id="modal-logo" class="form-livro">           
-            <form  class="clear" action="">
+        <section id="modal-logo" class="form-livro">
+            <form  class="clear" action="{{ route('livros.store') }}" method="POST">
                 @csrf
                 <label for="Titulo">Titulo:</label>
                 <input type="text" name="titulo" placeholder="A vida em 1 Ano" required>
                 <label for="Autor">Autor:</label>
                 <input type="text" name="autor" placeholder="Jordan Jeremy" required>
                 <label for="editora">Editora:</label>
-                <input type="text" name="editora" placeholder="exemplo@gmail.com" required> 
+                <input type="text" name="editora" placeholder="exemplo@gmail.com" required>
                 <label for="numero">Nº de Páginas</label>
-                <input type="number" name="pag" placeholder="255" required min="10">
+                <input type="number" name="num_pag" placeholder="255" required min="10">
+                <label for="numero">Qtd de Livro</label>
+                <input type="number" name="qtd" placeholder="255" required>
+                <input type="hidden" name="status" value="Disponivel">
                 <div class="footer">
                     <input type="submit" value="Cadastrar">
                     <input type="reset" value="Limpar">
